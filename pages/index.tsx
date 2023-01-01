@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { readLine } from "../readfile";
 import { useRouter } from "next/router";
+import path from "path";
 
 export default function Home({ quote }: { quote: string }) {
   const router = useRouter();
@@ -29,7 +30,9 @@ export default function Home({ quote }: { quote: string }) {
 
 export async function getServerSideProps() {
   const randNum = Math.floor(Math.random() * 100);
-  const quote = await readLine(randNum, "./public/quotes.txt");
+  const publicDirectory = path.join(process.cwd(), "public");
+
+  const quote = await readLine(randNum, publicDirectory + "/quotes.txt");
 
   return {
     props: {
