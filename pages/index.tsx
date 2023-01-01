@@ -29,7 +29,7 @@ export default function Home({ quote }: { quote: string }) {
 
 export async function getServerSideProps() {
   const randNum = Math.floor(Math.random() * 100);
-  const quote = await readLine(randNum, "public/quotes.txt");
+  const quote = await readLine(randNum, "./public/quotes.txt");
 
   return {
     props: {
